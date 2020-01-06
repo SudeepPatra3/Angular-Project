@@ -1,0 +1,38 @@
+<div class="container">
+  <input
+    type="text"
+    class="form-control mb-4 mt-4"
+    placeholder="search name"
+    [(ngModel)]="searchText"
+  />
+</div>
+<h1>{{ searchText }}</h1>
+<table class="table table-bordered">
+  <thead class=" table-bordered thead-dark">
+    <tr>
+      <th>Sl no</th>
+      <th>Name</th>
+      <th>DOJ</th>
+      <th>Pos</th>
+      <th>salary</th>
+      <th>Photo</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let emp of employeedata | filter: searchText; index as i"
+      [ngStyle]="{ background: 'pink' }"
+    >
+      <td class="badge badge-danger">{{ i + 1 }}</td>
+      <td>{{ emp.name | uppercase }}</td>
+      <td>{{ emp.doj }}</td>
+      <td>{{ emp.pos | titlecase }}</td>
+      <td>{{ emp.sal | currency }}</td>
+      <td><img src="{{ emp.img }}" /></td>
+      <td>
+        <button (click)="removeEmp(emp)" class="btn btn-danger">Remove</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
